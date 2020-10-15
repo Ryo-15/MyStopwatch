@@ -5,4 +5,20 @@
   const start = document.getElementById('start');
   const stop = document.getElementById('stop');
   const reset = document.getElementById('reset');
+
+  let startTime;
+
+  function countUp() {
+    console.log(Date.now - startTime);
+
+    setTimeout(() => {
+      countUp();
+    }, 10);
+  }
+
+  // カウントアップ機能
+  start.addEventListener('click', () => {
+    startTime = Date.now();
+    countUp();
+  });
 }
