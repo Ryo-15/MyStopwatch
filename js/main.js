@@ -8,10 +8,11 @@
 
   let startTime;
   let timeoutId;
+  let elapsedTime = 0;
 
   function countUp() {
     // console.log(Date.now - startTime);
-    const d = new Date(Date.now() - startTime);
+    const d = new Date(Date.now() - startTime + elapsedTime);
     const m = String(d.getMinutes()).padStart(2, '0');
     const s = String(d.getSeconds()).padStart(2, '0');
     const ms = String(d.getMilliseconds()).padStart(3, '0');
@@ -31,10 +32,13 @@
   // カウントストップ機能
   stop.addEventListener('click', () => {
     clearTimeout(timeoutId);
+    // カウント再開時の設定
+    elapsedTime += Date.now() - startTime;
   });
 
   // カウントリセット機能
   reset.addEventListener('click', () => {
     timer.textContent = '00:00.000';
+    elapsedTime = 0;
   });
 }
